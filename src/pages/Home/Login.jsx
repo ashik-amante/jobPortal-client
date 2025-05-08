@@ -2,12 +2,15 @@ import React, { useContext } from 'react';
 import lottieLogin from '../../assets/lottie/login.json'
 import Lottie from 'lottie-react';
 import AuthContext from '../../Context/AuthContext/AuthCOntext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Login = () => {
     const {logIn} = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log('location in login page', location);
+    const from = location?.state || '/'
 
 
     const handleLogin = e=>{
@@ -22,7 +25,7 @@ const Login = () => {
         .then(result=>{
             console.log(result.user);
             toast.success('Login successfull!!')
-            navigate('/')
+            navigate(from)
         })
         .catch(err=>{
             console.log(err.message);

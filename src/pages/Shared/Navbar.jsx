@@ -38,7 +38,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='flex '>
-                <a className="btn btn-ghost text-3xl">JobPortal</a>
+                <Link to='/' className="btn btn-ghost text-3xl">JobPortal</Link>
                 <img className='w-10' src={logo} alt="" />
                 </div>
             </div>
