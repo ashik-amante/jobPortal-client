@@ -4,6 +4,7 @@ import Lottie from 'lottie-react';
 import AuthContext from '../../Context/AuthContext/AuthCOntext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import GoogleSignin from '../Shared/GoogleSignin';
 
 const Login = () => {
     const {logIn} = useContext(AuthContext)
@@ -63,6 +64,7 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
+                    <GoogleSignin></GoogleSignin>
                 </div>
             </div>
         </div>

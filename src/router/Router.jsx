@@ -10,6 +10,9 @@ import JobDetails from "../pages/JobDetails/JobDetails";
 import { param } from "motion/react-client";
 import PrivateRoute from "./PrivateRoute";
 import JobApplied from "../pages/JobApplied/JobApplied";
+import MyApplications from "../pages/MyApplications/MyApplications";
+import AddJobs from "../pages/AddJobs/AddJobs";
+import MypostedJobs from "../pages/MyPostedJobs/MypostedJobs";
 
   const router  = createBrowserRouter([
     {
@@ -37,6 +40,15 @@ import JobApplied from "../pages/JobApplied/JobApplied";
           {
             path: '/jobApplied/:id',
             element:<PrivateRoute><JobApplied></JobApplied></PrivateRoute>
+          },{
+            path: '/myApplications',
+            element: <PrivateRoute><MyApplications></MyApplications></PrivateRoute>
+          },{
+            path: '/addJob',
+            element: <PrivateRoute><AddJobs></AddJobs></PrivateRoute>
+          },{
+            path: '/myPostedJobs',
+            element: <PrivateRoute><MypostedJobs></MypostedJobs></PrivateRoute>
           }
         ]
     }

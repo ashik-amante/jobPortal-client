@@ -17,7 +17,7 @@ const JobApplied = () => {
         const resume = form.resume.value
         const data = { linkedin, github, resume }
         const jobApplication = {
-            jb_id: id,
+            job_id: id,
             application_email: user.email,
             linkedin,
             github,
@@ -25,7 +25,7 @@ const JobApplied = () => {
         }
         console.log(data);
 
-        fetch('http://localhost:5000/job_applications', {
+        fetch('http://localhost:5000/job-applications', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -34,6 +34,7 @@ const JobApplied = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: "Successfully Applied!",
@@ -47,7 +48,7 @@ const JobApplied = () => {
     return (
         <div className="card w-full shadow-2xl bg-base-100">
             <h1 className="text-5xl font-bold text-center m-4">Apply now and best of luck!</h1>
-            <form className="card-body">
+            <form onSubmit={submitJobApplication} className="card-body">
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text font-semibold mb-1">Linkedin Url</span>
