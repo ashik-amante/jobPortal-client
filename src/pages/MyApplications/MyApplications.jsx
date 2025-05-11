@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/Hooks';
+import { useNavigate } from 'react-router-dom';
 
 const MyApplications = () => {
     const {user} = useAuth()
     const [jobs,setJobs] = useState([])
+    const navigate = useNavigate()
     console.log(jobs);
 
     useEffect(()=>{
         fetch(`http://localhost:5000/job-application?email=${user?.email}`)
         .then(res=>res.json())
-        .then(data=> setJobs(data))
+        .then(data=> {
+             setJobs(data)
+            navigate('/myApplications')
+        }
+           
+        )
+        
     },[])
 
     return (
