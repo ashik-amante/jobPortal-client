@@ -5,12 +5,13 @@ import AuthContext from '../../Context/AuthContext/AuthCOntext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import GoogleSignin from '../Shared/GoogleSignin';
+import axios from 'axios';
 
 const Login = () => {
     const {logIn} = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
-    console.log('location in login page', location);
+    // console.log('location in login page', location);
     const from = location?.state || '/'
 
 
@@ -20,11 +21,18 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         const logInData = {email,password}
-        console.log(logInData);
+        // console.log(logInData);
         // user login
         logIn(email,password)
         .then(result=>{
-            console.log(result.user);
+            console.log(result.user.email);
+
+            const user = {email : email}
+            axios.post('http://localhost:5000/jwt', user)
+            .then(res=> {
+                console.log(res.data);
+            })
+
             toast.success('Login successfull!!')
             navigate(from)
         })
