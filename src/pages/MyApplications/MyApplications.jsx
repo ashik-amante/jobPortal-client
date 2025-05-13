@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/Hooks';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const MyApplications = () => {
     const {user} = useAuth()
@@ -9,14 +10,19 @@ const MyApplications = () => {
     console.log(jobs);
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/job-application?email=${user?.email}`)
-        .then(res=>res.json())
-        .then(data=> {
-             setJobs(data)
-            navigate('/myApplications')
-        }
+        // fetch(`http://localhost:5000/job-application?email=${user?.email}`)
+        // .then(res=>res.json())
+        // .then(data=> {
+        //      setJobs(data)
+        //     navigate('/myApplications')
+        // }
            
-        )
+        // )
+        axios.get(`http://localhost:5000/job-application?email=${user?.email}`, {withCredentials:true})
+        .then(res=> {
+            setJobs(res.data)
+            console.log(res.data);
+        })
         
     },[])
 
