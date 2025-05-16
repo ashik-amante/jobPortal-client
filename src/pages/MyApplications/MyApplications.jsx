@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/Hooks';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyApplications = () => {
     const {user} = useAuth()
     const [jobs,setJobs] = useState([])
     const navigate = useNavigate()
-    console.log(jobs);
+    const axiosSecure = useAxiosSecure()
+   
 
     useEffect(()=>{
         // fetch(`http://localhost:5000/job-application?email=${user?.email}`)
@@ -18,7 +20,13 @@ const MyApplications = () => {
         // }
            
         // )
-        axios.get(`http://localhost:5000/job-application?email=${user?.email}`, {withCredentials:true})
+        // axios.get(`http://localhost:5000/job-application?email=kala@gmail.com`, {withCredentials:true})
+        // .then(res=> {
+        //     setJobs(res.data)
+        //     console.log(res.data);
+        // })
+
+        axiosSecure.get(`/job-application?email=${user?.email}`)
         .then(res=> {
             setJobs(res.data)
             console.log(res.data);
@@ -76,7 +84,7 @@ const MyApplications = () => {
                                     </td>
                                     <td>Purple</td>
                                     <th>
-                                        <button className="btn btn-ghost btn">X</button>
+                                        <button className="btn btn-ghost ">X</button>
                                     </th>
                                 </tr>
                             )
